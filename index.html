@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+<title>Produktopus | Affordable Problem-Solving Products (Under ₹1000)</title>
+<meta name="description" content="Produktopus curates high-quality, budget-friendly products (under ₹1000) to solve daily life problems. 4.2+ rated solutions for sleep, productivity, home & more!">
+<meta name="keywords" content="affordable products India, problem-solving gadgets, best products under 1000, high-rated daily essentials, sleep solutions, productivity tools">
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:title" content="Produktopus | Smart, Affordable Solutions for Everyday Problems">
+<meta property="og:description" content="Discover 4.2+ rated products under ₹1000 that make life easier. Curated solutions for sleep, home, tech & more!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.produktopus.com">
+<meta property="og:image" content="https://www.produktopus.com/images/og-banner.jpg"> <!-- Replace with actual image -->
+<meta property="og:site_name" content="Produktopus">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Produktopus | Budget-Friendly Solutions for a Happier Life">
+<meta name="twitter:description" content="We find the best-rated (4.2+) products under ₹1000 to fix everyday problems. Sleep better, work smarter, live happier!">
+<meta name="twitter:image" content="https://www.produktopus.com/images/twitter-card.jpg"> <!-- Replace -->
+    <link rel="icon" href="produktopuslogo.jpg" type="image/jpg">
+    <style>
+        :root {
+            --primary-white: #ffffff;
+            --secondary-white: #f8f9fa;
+            --primary-purple: #6a0dad;
+            --secondary-purple: #9c27b0;
+            --accent-purple: #e1bee7;
+            --dark-text: #333333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-white);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Shopping Trolley */
+        .trolley-container {
+            position: relative;
+            margin-left: 2rem;
+        }
+        
+        .trolley {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .trolley:hover {
+            color: var(--primary-purple);
+            transform: scale(1.1);
+        }
+        
+        .trolley-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary-purple);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .trolley-products {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .trolley-container:hover .trolley-products {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+        }
+        
+        .trolley-product {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .trolley-product img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--dark-text);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--primary-white) 0%, var(--accent-purple) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            width: 50%;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-purple);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--dark-text);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.4);
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            width: 40%;
+            height: 80%;
+            background-image: url('https://example.com/3d-products.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(5deg); }
+            100% { transform: translateY(0px) rotateY(0deg); }
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 5rem 5%;
+            background-color: var(--secondary-white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-purple);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background-color: var(--primary-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 300px;
+            perspective: 1000px;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(106, 13, 173, 0.2);
+        }
+        
+        .category-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .category-card:hover .category-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .category-card-front, .category-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .category-card-front {
+            background-color: var(--primary-white);
+        }
+        
+        .category-card-back {
+            background-color: var(--primary-purple);
+            color: var(--light-text);
+            transform: rotateY(180deg);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-purple);
+        }
+        
+        .category-card-back .category-icon {
+            color: var(--light-text);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .category-card-back .category-title {
+            color: var(--light-text);
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .category-card-back .category-description {
+            opacity: 0.9;
+        }
+        
+        /* Trending Products Section */
+        .trending-products {
+            padding: 5rem 5%;
+            background-color: var(--secondary-white);
+        }
+        
+        .trending-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff5722;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: var(--primary-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.2);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+            opacity: 0.7;
+        }
+        
+        .view-product {
+            display: inline-block;
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .view-product:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .view-product:hover:after {
+            width: 100%;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 5rem 5%;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-video {
+            flex: 1;
+            min-height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 5%;
+            background-color: var(--secondary-white);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-method {
+            background-color: var(--primary-white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-method h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+        
+        .contact-method p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .contact-link {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-purple);
+            color: var(--light-text);
+            padding: 4rem 5% 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--light-text);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-section {
+                flex-direction: column;
+            }
+            
+            .about-video {
+                width: 100%;
+                min-height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-white);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+            }
+            
+            .nav-links.active {
+                max-height: 500px;
+                padding: 2rem 0;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                margin-left: 0;
+            }
+            
+            .trolley-container {
+                margin-left: 1rem;
+            }
+            
+            .hero {
+                flex-direction: column;
+                height: auto;
+                padding: 8rem 5% 3rem;
+                text-align: center;
+            }
+            
+            .hero-content {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                right: auto;
+                margin-top: 2rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+         .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-purple);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+        transition: all 0.3s ease;
+           opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+    }
+
+    .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top:hover {
+        background-color: var(--secondary-purple);
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(106, 13, 173, 0.4);
+    }
+
+    .back-to-top i {
+        transition: transform 0.3s ease;
+    }
+
+    .back-to-top:hover i {
+          transform: translateY(-3px);
+    }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="produktopuslogo.jpg" alt="Produktopus Logo">
+                <span>Produktopus</span>
+            </a>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#trending">Trending</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                    
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Products That Elevate Your Life</h1>
+            <p>Curated selection of high-quality products across 9 essential categories to improve your daily life, productivity, and well-being.</p>
+            <a href="#categories" class="cta-button">Explore Categories</a>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <h2 class="section-title">Our Categories</h2>
+        <div class="category-grid">
+            <!-- Category 1 - Sleep -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-moon category-icon"></i>
+                        <h3 class="category-title">Sleep</h3>
+                        <p class="category-description">Products for better sleep and relaxation</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-moon category-icon"></i>
+                        <h3 class="category-title">Sleep</h3>
+                        <p class="category-description">Discover products that help you achieve perfect sleep</p>
+                        <a href="sleep.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 2 - Productivity -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-tasks category-icon"></i>
+                        <h3 class="category-title">Productivity</h3>
+                        <p class="category-description">Tools to boost your efficiency</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-tasks category-icon"></i>
+                        <h3 class="category-title">Productivity</h3>
+                        <p class="category-description">Enhance your work and study performance</p>
+                        <a href="productivity.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 3 - Fitness -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-dumbbell category-icon"></i>
+                        <h3 class="category-title">Fitness</h3>
+                        <p class="category-description">Equipment for your workouts</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-dumbbell category-icon"></i>
+                        <h3 class="category-title">Fitness</h3>
+                        <p class="category-description">Achieve your fitness goals</p>
+                        <a href="fitness.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 4 - Home -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-home category-icon"></i>
+                        <h3 class="category-title">Home</h3>
+                        <p class="category-description">Essentials for your living space</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-home category-icon"></i>
+                        <h3 class="category-title">Home</h3>
+                        <p class="category-description">Make your home more comfortable</p>
+                        <a href="home.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <!-- Category 6 - Travel -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-suitcase category-icon"></i>
+                        <h3 class="category-title">Travel</h3>
+                        <p class="category-description">Gear for your adventures</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-suitcase category-icon"></i>
+                        <h3 class="category-title">Travel</h3>
+                        <p class="category-description">Travel in style and comfort</p>
+                        <a href="travel.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 7 - Kitchen -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-utensils category-icon"></i>
+                        <h3 class="category-title">Kitchen</h3>
+                        <p class="category-description">Tools for cooking enthusiasts</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-utensils category-icon"></i>
+                        <h3 class="category-title">Kitchen</h3>
+                        <p class="category-description">Upgrade your cooking experience</p>
+                        <a href="kitchen.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 8 - Wellness -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-heart category-icon"></i>
+                        <h3 class="category-title">Fun</h3>
+                        <p class="category-description">Unplug. Play. Repeat.</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-heart category-icon"></i>
+                        <h3 class="category-title">Fun</h3>
+                        <p class="category-description">Take care of your mind and body</p>
+                        <a href="toy.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 9 - Office -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-briefcase category-icon"></i>
+                        <h3 class="category-title">Office</h3>
+                        <p class="category-description">Workspace essentials</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-briefcase category-icon"></i>
+                        <h3 class="category-title">Office</h3>
+                        <p class="category-description">Create the perfect work environment</p>
+                        <a href="office.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 10 - Outdoor -->
+            <div class="category-card">
+                <div class="category-card-inner">
+                    <div class="category-card-front">
+                        <i class="fas fa-tree category-icon"></i>
+                        <h3 class="category-title">Outdoor</h3>
+                        <p class="category-description">Gear for outdoors</p>
+                    </div>
+                    <div class="category-card-back">
+                        <i class="fas fa-tree category-icon"></i>
+                        <h3 class="category-title">Outdoor</h3>
+                        <p class="category-description">Explore the great outdoors</p>
+                        <a href="outdoor.html" class="cta-button" style="margin-top: 1rem;">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trending Products Section -->
+    <section class="trending-products" id="trending">
+        <h2 class="section-title">Trending Now</h2>
+        <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Discover this week's most popular products loved by our community
+        </p>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="trending-badge">HOT</div>
+                <div class="product-image" style="background-image: url('https://m.media-amazon.com/images/I/71Pg04xnZsL._SX679_.jpg');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">Luxury Sleep Mask</h3>
+                    <p class="product-description">100% blackout sleep mask with contoured design for complete darkness and comfort.</p>
+                    <a href="https://amzn.to/4liqhHl" class="view-product" target="_blank">View Product →</a>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="trending-badge">NEW</div>
+                <div class="product-image" style="background-image: url('https://m.media-amazon.com/images/I/71cjth7t1nL._SX679_.jpg');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">Push Up Board</h3>
+                    <p class="product-description">Designed to perfect your form, protect your joints, and push your limits.</p>
+                    <a href="https://amzn.to/3TuFUPB" class="view-product" target="_blank">View Product →</a>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="trending-badge">BESTSELLER</div>
+                <div class="product-image" style="background-image: url('https://m.media-amazon.com/images/I/71y5nVE6S4L._SX679_.jpg');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">Multipurpose Chopper</h3>
+                    <p class="product-description">Chop, dice, and prep in seconds, a smartest shortcut to effortless meals.</p>
+                    <a href="https://amzn.to/4lMSrtW" class="view-product" target="_blank">View Product →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2 class="section-title" style="text-align: left;">About Produktopus</h2>
+            <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+                Produktopus was born from a simple idea: to help people discover products that truly improve their lives. 
+                We're not just another affiliate site - we're curators of quality, testers of technology, and advocates 
+                for products that make a difference.
+            </p>
+            <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+                Our team spends countless hours researching, testing, and reviewing products across 9 essential categories 
+                so you don't have to. We only recommend products we genuinely believe in and would use ourselves.
+            </p>
+            <p style="margin-bottom: 2rem; line-height: 1.6;">
+                Watch our story below to learn more about how Produktopus selects products and our commitment to helping 
+                you make informed purchasing decisions.
+            </p>
+            <a href="#categories" class="cta-button">Explore Our Categories</a>
+        </div>
+        <div class="about-video">
+            <!-- Replace with your actual YouTube embed code -->
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                    title="About Produktopus" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Have questions about our recommended products or want to suggest a product for review? 
+            Reach out to us through any of these channels.
+        </p>
+        
+        <div class="contact-container">
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>Chat with us directly for quick responses to your questions.</p>
+                <a href="https://forms.gle/zCSLKPQCRwfLHGbk9" class="contact-link" target="_blank">Message Us</a>
+            </div>
+            
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>Send us detailed inquiries and we'll respond within 24 hours.</p>
+                <a href="mailto:hello@produktopus.shop" class="contact-link">Email Us</a>
+            </div>
+            
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3>Instagram</h3>
+                <p>Follow us for daily product highlights and behind-the-scenes.</p>
+                <a href="https://www.instagram.com/produktopus?igsh=MW91MjF6eW9pem80eQ==" class="contact-link" target="_blank">Follow Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Produktopus</h3>
+                <p>Curating the best products to improve your daily life across 9 essential categories.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x"></i></a>
+                    <a href="https://www.instagram.com/produktopus?igsh=MW91MjF6eW9pem80eQ=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://pin.it/4qPf02Oog"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+          
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Affiliate Disclosure</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get product recommendations and special offers.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: none; border-radius: 4px;">
+                    <button type="submit" style="background: var(--light-text); color: var(--primary-purple); border: none; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Produktopus. All rights reserved. | Affiliate Marketing Site</p>
+        </div>
+    </footer>
+    
+    <button class="back-to-top" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Simple hover effect for product cards
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 10px 25px rgba(106, 13, 173, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+          const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('active');
+        } else {
+            backToTopButton.classList.remove('active');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html>

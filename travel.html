@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Products | Produktopus</title>
+    <link rel="icon" href="producktopuslogo.jpg" type="image/jpg">
+    <style>
+        :root {
+            --primary-white: #ffffff;
+            --secondary-white: #f8f9fa;
+            --primary-purple: #6a0dad;
+            --secondary-purple: #9c27b0;
+            --accent-purple: #e1bee7;
+            --dark-text: #333333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-white);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Shopping Trolley */
+        .trolley-container {
+            position: relative;
+            margin-left: 2rem;
+        }
+        
+        .trolley {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .trolley:hover {
+            color: var(--primary-purple);
+            transform: scale(1.1);
+        }
+        
+        .trolley-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--primary-purple);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .trolley-products {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .trolley-container:hover .trolley-products {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+        }
+        
+        .trolley-product {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .trolley-product img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--dark-text);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            position: relative;
+            padding-top: 2rem;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-purple);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 3rem;
+        }
+        
+        .product-box {
+            background-color: var(--primary-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.2);
+        }
+        
+        .product-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-box:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+        
+        .buy-button {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: var(--light-text);
+            padding: 0.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .buy-button:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-3px);
+        }
+        
+        /* Disclaimer Section */
+        .disclaimer {
+            background-color: var(--secondary-white);
+            padding: 2rem 5%;
+            margin-top: 3rem;
+            border-radius: 10px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .disclaimer h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+        
+        .disclaimer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-purple);
+            color: var(--light-text);
+            padding: 4rem 5% 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--light-text);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-white);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+            }
+            
+            .nav-links.active {
+                max-height: 500px;
+                padding: 2rem 0;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                margin-left: 0;
+            }
+            
+            .trolley-container {
+                margin-left: 1rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+         .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-purple);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+        transition: all 0.3s ease;
+           opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+    }
+
+    .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top:hover {
+        background-color: var(--secondary-purple);
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(106, 13, 173, 0.4);
+    }
+
+    .back-to-top i {
+        transition: transform 0.3s ease;
+    }
+
+    .back-to-top:hover i {
+          transform: translateY(-3px);
+    }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="produktopushomepage.html" class="logo">
+                <img src="produktopuslogo.jpg" alt="Produktopus Logo">
+                <span>Produktopus</span>
+            </a>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+             <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#categories">Categories</a></li>
+                <li><a href="index.html#trending">Trending</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+               
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">Travel Essentials</h1>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-box">
+                <div class="product-image-container">
+                    <img src="https://m.media-amazon.com/images/I/61FS-o8S6QL._SX679_.jpg" alt="Travel Organizer Packing Cubes" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Travel Organizer Packing Cubes</h3>
+                    <a href="https://amzn.to/3Gyt7J4" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-box">
+                <div class="product-image-container">
+                    <img src="https://m.media-amazon.com/images/I/41bgAIeG6KL.jpg" alt="Electric Kettle" class="Portable Pen Shape Sanitizer Spray">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Portable Pen Shape Sanitizer Spray</h3>
+                    <a href="https://amzn.to/3TPwoHb" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-box">
+                <div class="product-image-container">
+                    <img src="https://m.media-amazon.com/images/I/611RCy1XjsL._SL1500_.jpg" alt="Universal Travel Adapter" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Universal Travel Adapter</h3>
+                    <a href="https://m.media-amazon.com/images/I/41bgAIeG6KL.jpg" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-box">
+                <div class="product-image-container">
+                    <img src="https://m.media-amazon.com/images/I/515v5oBHrUL._SX679_.jpg" alt="Portable & Travel-Friendly Hand Wash" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Portable & Travel-Friendly Hand Wash</h3>
+                    <a href="https://amzn.to/44RneQq" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-box">
+                <div class="product-image-container">
+                    <img src="https://m.media-amazon.com/images/I/41z-J9nwsuL._SX679_.jpg" alt="Rechargeable Torch With Power Bank" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Rechargeable Torch With Power Bank</h3>
+                    <a href="https://amzn.to/3TPwwXb" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-box">
+                <div class="product-image-container">
+                    <img src="https://m.media-amazon.com/images/I/41HE8ia5u1L._SX300_SY300_QL70_FMwebp_.jpg" alt="Travel Pillow" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Travel Pillow</h3>
+                    <a href="https://amzn.to/4kwFkfn" class="buy-button" target="_blank">Buy Now</a>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        <!-- Disclaimer Section -->
+        <div class="disclaimer">
+            <h3>Important Note</h3>
+            <p>We've curated a selection of Travel-Friendly products priced under ₹1000 to help you find quality items that offer great value. These recommendations are based on our research and customer reviews.</p>
+            <p>Please note that we've included these products for your convenience, but you may find other options that better suit your specific needs and budget. The prices and availability of these products may change without notice.</p>
+            <p>Produktopus is not responsible for any issues related to product quality, delivery, or after-sales service. All purchases are made directly through Amazon, and any concerns should be addressed to their customer service.</p>
+            <p>By clicking on any product links, you'll be redirected to Amazon's website, where their terms and conditions apply. We may earn a small affiliate commission if you make a purchase through our links, at no additional cost to you.</p>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+  <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Produktopus</h3>
+                <p>Curating the best products to improve your daily life across 9 essential categories.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/produktopus?igsh=MW91MjF6eW9pem80eQ=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://pin.it/4qPf02Oog"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="productopushomepage.html#about">About Us</a></li>
+                    <li><a href="productopushomepage.html#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Affiliate Disclosure</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get product recommendations and special offers.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: none; border-radius: 4px;">
+                    <button type="submit" style="background: var(--light-text); color: var(--primary-purple); border: none; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Produktopus. All rights reserved. | Affiliate Marketing Site</p>
+        </div>
+    </footer>
+
+
+    
+    <button class="back-to-top" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+    
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+          const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('active');
+        } else {
+            backToTopButton.classList.remove('active');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html>
